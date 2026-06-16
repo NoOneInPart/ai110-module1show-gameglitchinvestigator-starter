@@ -19,8 +19,8 @@ Document at least 3 bugs you found. Add rows as needed.
 
 | Input                     | Expected Behavior        | Actual Behavior    | Console Output / Error |
 |---------------------------|--------------------------|--------------------|------------------------|
-| guess below secret        | "Go HIGHER!" hint        | "Go LOWER!" hint   | none                   |
-| guess above secret        | "Go LOWER!" hint         | "Go HIGHER!" hint  | none                   |
+|✔️guess below secret        | "Go HIGHER!" hint        | "Go LOWER!" hint   | none                   |
+|✔️guess above secret        | "Go LOWER!" hint         | "Go HIGHER!" hint  | none                   |
 | press [ENTER] after guess | guess is submitted       | hint is cleared    | none                   |
 | submit final guess        | Attempts left: 0         | Attempts left: 1   | none                   |
 | difficulty changed        | number range changes     | range still 1-100  | none                   |
@@ -31,7 +31,9 @@ Document at least 3 bugs you found. Add rows as needed.
 ## 2. How did you use AI as a teammate?
 
 - Which AI tools did you use on this project (for example: ChatGPT, Gemini, Copilot)?
+    Claude
 - Give one example of an AI suggestion that was correct (including what the AI suggested and how you verified the result).
+    When fixing the contradictory hints and producing tests for them, Claude mentioned that the existing tests in test_game_logic.py would fail as the existing check_guess() function returns a tuple, while the existing tests expect a string, and suggested a fix. This was correct: the tests pass correctly and the program functions properly.
 - Give one example of an AI suggestion that was incorrect or misleading (including what the AI suggested and how you verified the result).
 
 ---
