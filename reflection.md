@@ -23,7 +23,7 @@ Document at least 3 bugs you found. Add rows as needed.
 |✔️guess above secret        | "Go LOWER!" hint         | "Go HIGHER!" hint  | none                   |
 |✔️press [ENTER] after guess | guess is submitted       | hint is cleared    | none                   |
 |✔️submit final guess        | Attempts left: 0         | Attempts left: 1   | none                   |
-| difficulty changed        | number range changes     | range still 1-100  | none                   |
+|✔️difficulty changed        | number range changes     | range still 1-100  | none                   |
 |                           | new game, attempts reset | attempts not reset | none                   |
 
 ---

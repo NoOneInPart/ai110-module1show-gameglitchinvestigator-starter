@@ -75,7 +75,8 @@ with col3:
 
 if new_game:
     st.session_state.attempts = 0
-    st.session_state.secret = random.randint(1, 100)
+    #FIX: use difficulty when generating secret, authored with Claude
+    st.session_state.secret = random.randint(low, high)
     st.success("New game started.")
     st.rerun()
 
@@ -125,7 +126,7 @@ if submit:
                 )
 
 attempts_left_box.info(
-    f"Guess a number between 1 and 100. "
+    f"Guess a number between {low} and {high}. "
     f"Attempts left: {attempt_limit - st.session_state.attempts}"
 )
 
