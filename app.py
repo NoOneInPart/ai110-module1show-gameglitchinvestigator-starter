@@ -51,17 +51,13 @@ if "history" not in st.session_state:
 
 st.subheader("Make a guess")
 
-st.info(
-    f"Guess a number between 1 and 100. "
-    f"Attempts left: {attempt_limit - st.session_state.attempts}"
-)
+# FIX: render the "Attempts left" message after the guess is processed so the
+# count isn't one update behind, authored with Claude
+attempts_left_box = st.empty()
 
-with st.expander("Developer Debug Info"):
-    st.write("Secret:", st.session_state.secret)
-    st.write("Attempts:", st.session_state.attempts)
-    st.write("Score:", st.session_state.score)
-    st.write("Difficulty:", difficulty)
-    st.write("History:", st.session_state.history)
+# FIX: render the debug info after the guess is processed so the values aren't
+# one update behind, authored with Claude
+debug_box = st.empty()
 
 with st.form(key=f"guess_form_{difficulty}"):
     raw_guess = st.text_input(
@@ -127,6 +123,18 @@ if submit:
                     f"The secret was {st.session_state.secret}. "
                     f"Score: {st.session_state.score}"
                 )
+
+attempts_left_box.info(
+    f"Guess a number between 1 and 100. "
+    f"Attempts left: {attempt_limit - st.session_state.attempts}"
+)
+
+with debug_box.expander("Developer Debug Info"):
+    st.write("Secret:", st.session_state.secret)
+    st.write("Attempts:", st.session_state.attempts)
+    st.write("Score:", st.session_state.score)
+    st.write("Difficulty:", difficulty)
+    st.write("History:", st.session_state.history)
 
 st.divider()
 st.caption("Built by an AI that claims this code is production-ready.")
