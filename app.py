@@ -34,6 +34,19 @@ low, high = get_range_for_difficulty(difficulty)
 st.sidebar.caption(f"Range: {low} to {high}")
 st.sidebar.caption(f"Attempts allowed: {attempt_limit}")
 
+#FIX: start a fresh game when the difficulty is switched so the range, secret,
+# and attempt limit all stay consistent, authored with Claude
+if "difficulty" not in st.session_state:
+    st.session_state.difficulty = difficulty
+elif st.session_state.difficulty != difficulty:
+    st.session_state.difficulty = difficulty
+    st.session_state.secret = random.randint(low, high)
+    st.session_state.attempts = 0
+    st.session_state.score = 0
+    st.session_state.status = "playing"
+    st.session_state.history = []
+    st.rerun()
+
 if "secret" not in st.session_state:
     st.session_state.secret = random.randint(low, high)
 
