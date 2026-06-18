@@ -38,7 +38,9 @@ if "secret" not in st.session_state:
     st.session_state.secret = random.randint(low, high)
 
 if "attempts" not in st.session_state:
-    st.session_state.attempts = 1
+    #FIX: start at 0 so no attempt is counted before the first guess, matching
+    # the New Game reset, authored with Claude
+    st.session_state.attempts = 0
 
 if "score" not in st.session_state:
     st.session_state.score = 0
@@ -74,9 +76,14 @@ with col3:
     show_hint = st.checkbox("Show hint", value=True)
 
 if new_game:
+    #FIX: fully reset game state so a new game actually starts instead of just
+    # clearing hints, authored with Claude
     st.session_state.attempts = 0
     #FIX: use difficulty when generating secret, authored with Claude
     st.session_state.secret = random.randint(low, high)
+    st.session_state.score = 0
+    st.session_state.status = "playing"
+    st.session_state.history = []
     st.success("New game started.")
     st.rerun()
 
