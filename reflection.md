@@ -35,7 +35,7 @@ Document at least 3 bugs you found. Add rows as needed.
 - Give one example of an AI suggestion that was correct (including what the AI suggested and how you verified the result).
     When fixing the contradictory hints and producing tests for them, Claude mentioned that the existing tests in test_game_logic.py would fail as the existing check_guess() function returns a tuple, while the existing tests expect a string, and suggested a fix. This was correct: the tests pass correctly and the program functions properly.
 - Give one example of an AI suggestion that was incorrect or misleading (including what the AI suggested and how you verified the result).
-
+    Claude mentions that the TypeError fallback of check_guess() doesn't need to exist because both 'guess' and 'secret' could be cast to integer, but this isn't necessarily true because the secret should already be an int. This ended up exposing another bug where the secret is specifically cast to a string inside the Streamlit app but only on even-numbered attempts for some reason. 
 ---
 
 ## 3. Debugging and testing your fixes

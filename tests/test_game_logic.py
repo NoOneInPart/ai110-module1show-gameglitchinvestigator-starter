@@ -19,3 +19,21 @@ def test_guess_too_low():
     outcome, message = check_guess(40, 50)
     assert outcome == "Too Low"
     assert "HIGHER" in message
+
+# Type checks: check_guess should return a (str, str) tuple and compare two
+# ints without raising. These guard against the old bug where the secret was
+# cast to str and comparisons fell back to lexicographic string ordering.
+# Authored using Claude.
+def test_return_types():
+    result = check_guess(40, 50)
+    assert isinstance(result, tuple)
+    assert len(result) == 2
+    outcome, message = result
+    assert isinstance(outcome, str)
+    assert isinstance(message, str)
+
+def test_int_inputs_do_not_raise():
+    # With two ints, check_guess must compare cleanly without a TypeError.
+    check_guess(40, 50)
+    check_guess(50, 50)
+    check_guess(60, 50)

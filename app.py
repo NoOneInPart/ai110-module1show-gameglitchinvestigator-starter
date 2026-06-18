@@ -138,13 +138,8 @@ if submit:
         st.error(err)
     else:
         st.session_state.history.append(guess_int)
-
-        if st.session_state.attempts % 2 == 0:
-            secret = str(st.session_state.secret)
-        else:
-            secret = st.session_state.secret
-
-        outcome, message = check_guess(guess_int, secret)
+        #FIX: do not randomly cast secret to string on even-numbered attempts, authored with Claude
+        outcome, message = check_guess(guess_int, st.session_state.secret)
 
         if show_hint:
             st.warning(message)
