@@ -63,14 +63,9 @@ with st.expander("Developer Debug Info"):
     st.write("Difficulty:", difficulty)
     st.write("History:", st.session_state.history)
 
-#FIX: submit guess when Enter is pressed in textbox, authored with Claude
-def _on_enter():
-    st.session_state.enter_submitted = True
-
 raw_guess = st.text_input(
     "Enter your guess:",
-    key=f"guess_input_{difficulty}",
-    on_change=_on_enter,
+    key=f"guess_input_{difficulty}"
 )
 
 col1, col2, col3 = st.columns(3)
@@ -80,10 +75,6 @@ with col2:
     new_game = st.button("New Game 🔁")
 with col3:
     show_hint = st.checkbox("Show hint", value=True)
-
-# Pressing Enter in the text input fires on_change; treat that as a submit too.
-if st.session_state.pop("enter_submitted", False):
-    submit = True
 
 if new_game:
     st.session_state.attempts = 0
