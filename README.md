@@ -26,27 +26,40 @@ It wrote the code, ran away, and now the game is unplayable.
 ## 📝 Document Your Experience
 
 - [ ] Describe the game's purpose.
+   > Make the user guess numbers until they either win or lose.
 - [ ] Detail which bugs you found.
+   > Contradictory hints, "attempts left" does not update correctly, difficulty changes don't apply correctly, New Game doesn't work, the Enter key does not submit a guess (not necessarily a bug)
 - [ ] Explain what fixes you applied.
+   > The hints were corrected and an underlying bug where the secret changed types with every other guess was fixed, the "attempts left" message was reconfigured to update after a guess was submitted rather than before, changing the difficulty now takes the new range into account when picking a new secret, the game correctly starts with all attempts available, the New Game button properly resets the game state completely, the text entry box is wrapped in a form to allow handling the Enter key.
 
 ## 📸 Demo Walkthrough
 
 Describe your fixed game in numbered steps so a reader can follow along without watching a video:
 
-1. <!-- Describe this step -->
-2. <!-- Describe this step -->
-3. <!-- Describe this step -->
-4. <!-- Describe this step -->
-5. <!-- Add more steps as needed -->
+1. Select a difficulty from the sidebar
+2. Enter a guess into the box
+3. Press Enter or "Submit Guess"
+4. Enter new guesses as needed depending on the given hint
+5. Win or lose.
+6. Press New Game
+7. GOTO 1.
 
 **Screenshot** *(optional)*: <!-- Insert a screenshot of your fixed, winning game here -->
+![Screenshot](/Screenshot%20(250).png)
 
 ## 🧪 Test Results
 
 ```
-# Paste your pytest output here, e.g.:
-# pytest tests/
-# ========================= X passed in 0.XXs =========================
+> python -m pytest
+========= test session starts =========
+platform win32 -- Python 3.14.5, pytest-9.0.3, pluggy-1.6.0
+rootdir: C:\Users\t0mbu\Desktop\ai110-module1show-gameglitchinvestigator-starter\ai110-module1show-gameglitchinvestigator-starter
+plugins: anyio-4.13.0
+collected 5 items                      
+
+tests\test_game_logic.py .....   [100%]
+
+========== 5 passed in 0.03s ==========
 ```
 
 ## 🚀 Stretch Features
